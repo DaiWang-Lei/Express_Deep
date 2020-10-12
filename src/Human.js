@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 import HumanItem from './HumanItem'
 import Boss from './Boss'
 import axios from 'axios'
@@ -33,28 +35,37 @@ class Human extends Component {
                     <button onClick={this.addList.bind(this)}>增加技能</button>
                 </div>
                 <ul ref={(ul) => { this.ul = ul }}>
-                    {
-                        this.state.list.map((item, index) => {
-                            return (
-                                // 初学者
-                                // <li
-                                //     onClick={this.deleteItem.bind(this, index)}
-                                //     key={index + item}>{item}
-                                // </li>
+                    <TransitionGroup>
+                        {
+                            this.state.list.map((item, index) => {
+                                return (
+                                    // 初学者
+                                    // <li
+                                    //     onClick={this.deleteItem.bind(this, index)}
+                                    //     key={index + item}>{item}
+                                    // </li>
 
-                                // 组件化
-                                <HumanItem
-                                    key={index}
-                                    content={item}
-                                    index={index}
-                                    deleteItem={this.deleteItem.bind(this)}
-                                    addList={this.addList.bind(this)}
-                                // username='代罔'
-                                />
-
-                            )
-                        })
-                    }
+                                    // 组件化
+                                    <CSSTransition
+                                        timeout={1000}
+                                        classNames='boss-text'
+                                        unmountOnExit
+                                        appear={true}
+                                        key={index + item}
+                                    >
+                                        <HumanItem
+                                            key={index}
+                                            content={item}
+                                            index={index}
+                                            deleteItem={this.deleteItem.bind(this)}
+                                            addList={this.addList.bind(this)}
+                                        // username='代罔'
+                                        />
+                                    </CSSTransition>
+                                )
+                            })
+                        }
+                    </TransitionGroup>
                 </ul>
                 <Boss />
             </Fragment>
