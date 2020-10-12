@@ -1,0 +1,79 @@
+.input{
+    border: 3px solid skyblue;
+}
+.show{
+
+    /* opacity: 1;
+    transition: all 1.5s ease-in; */
+    animation: show-item 2s ease-in forwards;
+}
+.hide{
+    /* 普通动画
+    opacity: 0;
+    transition: all 1.5s ease-in; */
+
+    /* keyframes动画 */
+    animation: hide-item 2s ease-in forwards;
+    /* 
+        forwards属性，它是用来控制停止到最后一帧的。
+        ease-in 效果是由慢到快
+        2s 持续时间是2秒钟
+    */
+
+}
+
+@keyframes hide-item{
+    0%{
+        opacity: 1;
+        color: yellowgreen;
+    }
+    50%{
+        opacity: 0.5;
+        color:royalblue
+    }
+    100%{
+        opacity: 0;
+        color: seagreen;
+    }
+}
+
+@keyframes show-item{
+    0%{
+        opacity: 0;
+        color:yellow;
+    }
+    50%{
+        opacity: 0.5;
+        columns: skyblue;
+    }
+    100%{
+        opacity: 1;
+        color: red;
+    }
+}
+
+.boss-text-enter{
+    opacity: 0;
+}
+
+.boss-text-enter-active{
+    opacity: 1;
+    transition: opacity 2000ms;
+}
+
+.boss-text-enter-done{
+    opacity: 1;
+}
+
+.boss-text-exit{
+    opacity: 1;
+}
+
+.boss-text-exit-active{
+    opacity: 0;
+    transition: opacity 2000ms;
+}
+
+.boss-text-exit-done{
+    opacity: 0;
+}
