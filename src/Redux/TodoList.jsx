@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd'
+import store from './store'
+import 'antd/dist/antd.css'
 
-const data = [
-    '第一周,重新学习React',
-    '第二周,重新学习Vue',
-    '第三周,重新学习Node'
-]
+
 class TodoList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = store.getState();
+    }
     state = {}
     render() {
         return (
@@ -19,7 +20,7 @@ class TodoList extends Component {
                 <div style={{margin:'10px',width:'300px'}}>
                     <List
                         bordered
-                        dataSource={data}
+                        dataSource={this.state.list}
                         renderItem={item => (<List.Item>{item}</List.Item>)}
                     />
                 </div>
